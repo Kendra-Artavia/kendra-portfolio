@@ -51,6 +51,7 @@
 html {
   background-color: var(--bg);
   scroll-behavior: smooth;
+  scroll-padding-top: 5.25rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

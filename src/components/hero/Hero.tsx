@@ -2,6 +2,7 @@ import { ArrowRight, Download, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import { site, socialHref } from "../../config/site";
+import { useEmailAction } from "../../context/EmailActionProvider";
 import { GithubIcon, LinkedinIcon } from "../icons/SocialIcons";
 import { HeroVisual } from "./HeroVisual";
 
@@ -9,11 +10,13 @@ function SocialControl({
   href,
   label,
   external,
+  onClick,
   children,
 }: {
   href: string | null;
   label: string;
   external?: boolean;
+  onClick?: () => void;
   children: ReactNode;
 }) {
   const className =
@@ -32,6 +35,7 @@ function SocialControl({
       href={href}
       aria-label={label}
       className={className}
+      onClick={onClick}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
@@ -41,6 +45,7 @@ function SocialControl({
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const { prepareEmail } = useEmailAction();
   const item = {
     hidden: { opacity: 0, y: reduce ? 0 : 16 },
     show: {
@@ -131,7 +136,12 @@ export function Hero() {
             <SocialControl href={socialHref("linkedin")} label="LinkedIn" external>
               <LinkedinIcon />
             </SocialControl>
-            <SocialControl href={socialHref("email")} label="Email">
+            <SocialControl
+              href={socialHref("email")}
+              label="Email"
+              external
+              onClick={() => void prepareEmail()}
+            >
               <Mail size={18} strokeWidth={1.75} />
             </SocialControl>
           </motion.div>
