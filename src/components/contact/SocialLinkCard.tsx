@@ -1,10 +1,10 @@
-import { ChevronRight, Mail } from "lucide-react";
+import { Award, ChevronRight, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { socialHref } from "../../config/site";
 import { useEmailAction } from "../../context/EmailActionProvider";
 import { GithubIcon, LinkedinIcon } from "../icons/SocialIcons";
 
-type SocialKind = "github" | "linkedin" | "email";
+type SocialKind = "github" | "linkedin" | "email" | "credly";
 
 type SocialLinkCardProps = {
   kind: SocialKind;
@@ -15,6 +15,7 @@ type SocialLinkCardProps = {
 function SocialIcon({ kind }: { kind: SocialKind }) {
   if (kind === "github") return <GithubIcon size={20} />;
   if (kind === "linkedin") return <LinkedinIcon size={20} />;
+  if (kind === "credly") return <Award size={20} strokeWidth={1.75} />;
   return <Mail size={20} strokeWidth={1.75} />;
 }
 

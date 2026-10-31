@@ -39,6 +39,7 @@ export const site = {
     github: "https://github.com/Kendra-Artavia",
     linkedin: "https://www.linkedin.com/in/kendra-artavia-caballero",
     email: "kendra.artavia.caballero@gmail.com",
+    credly: "https://www.credly.com/users/kendra-artavia-caballero",
   },
   hero: {
     greeting: "Hi, I’m Kendra.",
@@ -90,6 +91,11 @@ export const site = {
         title: "Email",
         subtitle: "Send me a message",
       },
+      {
+        kind: "credly" as const,
+        title: "Credly",
+        subtitle: "View my certifications",
+      },
     ],
     opportunities: [
       {
@@ -116,7 +122,7 @@ export function gmailComposeHref(email: string): string {
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
 }
 
-export function socialHref(kind: "github" | "linkedin" | "email"): string | null {
+export function socialHref(kind: "github" | "linkedin" | "email" | "credly"): string | null {
   if (kind === "email") {
     return site.social.email ? gmailComposeHref(site.social.email) : null;
   }
